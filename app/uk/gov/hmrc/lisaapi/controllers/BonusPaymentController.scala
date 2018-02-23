@@ -91,22 +91,22 @@ class BonusPaymentController extends LisaController with LisaConstants {
 
       case GetBonusPaymentLmrnDoesNotExistResponse =>
         LisaMetrics.incrementMetrics(System.currentTimeMillis(),
-          LisaMetricKeys.lisaError(FORBIDDEN, LisaMetricKeys.BONUS_PAYMENT))
+          LisaMetricKeys.lisaError(BAD_REQUEST, LisaMetricKeys.BONUS_PAYMENT))
         BadRequest(Json.toJson(ErrorBadRequestLmrn))
 
       case GetBonusPaymentTransactionNotFoundResponse =>
         LisaMetrics.incrementMetrics(System.currentTimeMillis(),
-          LisaMetricKeys.lisaError(FORBIDDEN, LisaMetricKeys.BONUS_PAYMENT))
+          LisaMetricKeys.lisaError(NOT_FOUND, LisaMetricKeys.BONUS_PAYMENT))
         NotFound(Json.toJson(ErrorTransactionNotFound))
 
       case GetBonusPaymentInvestorNotFoundResponse =>
         LisaMetrics.incrementMetrics(System.currentTimeMillis(),
-          LisaMetricKeys.lisaError(FORBIDDEN, LisaMetricKeys.BONUS_PAYMENT))
+          LisaMetricKeys.lisaError(NOT_FOUND, LisaMetricKeys.BONUS_PAYMENT))
         NotFound(Json.toJson(ErrorAccountNotFound))
 
       case _ =>
         LisaMetrics.incrementMetrics(System.currentTimeMillis(),
-          LisaMetricKeys.lisaError(FORBIDDEN, LisaMetricKeys.BONUS_PAYMENT))
+          LisaMetricKeys.lisaError(INTERNAL_SERVER_ERROR, LisaMetricKeys.BONUS_PAYMENT))
         InternalServerError(Json.toJson(ErrorInternalServerError))
     }
   }
